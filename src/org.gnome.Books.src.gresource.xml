@@ -3,6 +3,7 @@
   <gresource prefix="/org/gnome/Books/js">
     <file>application.js</file>
     <file>changeMonitor.js</file>
+    <file>config.js</file>
     <file>documents.js</file>
     <file>epubview.js</file>
     <file>embed.js</file>

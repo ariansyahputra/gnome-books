@@ -1,17 +1,13 @@
-'''
 js_conf = configuration_data()
-js_conf.set('PACKAGE_NAME', meson.project_name())
-js_conf.set('PACKAGE_VERSION', books_version)
-js_conf.set('GETTEXT_PACKAGE', meson.project_name())
+js_conf.set('EXTRA_GDK_PIXBUF_LOADERS_DIR', extra_gdk_pixbuf_loaders_dir)
 
 js = 'config.js'
 
-configure_file(
+config_js = configure_file(
   input: js + '.in',
   output: js,
   configuration: js_conf
 )
-'''
 
 headers = files(
   'lib/gd-bookmark.h',
@@ -100,7 +96,7 @@ sources += gnome.compile_resources(
   resource,
   resource + '.gresource.xml',
   source_dir: '.',
-  dependencies: resource_data,
+  dependencies: [ resource_data, config_js ],
   gresource_bundle: true,
   install: true,
   install_dir: books_pkgdatadir

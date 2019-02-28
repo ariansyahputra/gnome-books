@@ -29,9 +29,11 @@ const Gio = imports.gi.Gio;
 const Gtk = imports.gi.Gtk;
 const GLib = imports.gi.GLib;
 const GObject = imports.gi.GObject;
+const GdkPixbuf = imports.gi.GdkPixbuf;
 const Tracker = imports.gi.Tracker;
 const TrackerControl = imports.gi.TrackerControl;
 
+const config = imports.config;
 const ChangeMonitor = imports.changeMonitor;
 const Format = imports.format;
 const MainWindow = imports.mainWindow;
@@ -106,6 +108,13 @@ var Application = new Lang.Class({
 
         // needed by data/ui/view-menu.ui
         GObject.type_ensure(Gio.ThemedIcon);
+
+        // init our pixbuf loaders
+        try {
+          GdkPixbuf.Pixbuf.init_modules (config.EXTRA_GDK_PIXBUF_LOADERS_DIR);
+        } catch (e) {
+            // ignore error
+        }
 
         this.parent({ application_id: appid });
 

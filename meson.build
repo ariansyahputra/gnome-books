@@ -52,6 +52,9 @@ add_project_arguments('-DHAVE_CONFIG_H', language: 'c')
 evince_req_version = '>= 3.13.3'
 tracker_req_version = '>= 0.17.3'
 
+gdk_pixbuf_dep = dependency('gdk-pixbuf-2.0', version: '>= 2.39.1')
+extra_gdk_pixbuf_loaders_dir = join_paths (books_pkglibdir, 'gdk-pixbuf', gdk_pixbuf_dep.get_pkgconfig_variable('gdk_pixbuf_binary_version'))
+
 gjs_dep = dependency('gjs-1.0', version: '>= 1.48.0')
 gjs_console = gjs_dep.get_pkgconfig_variable('gjs_console')
 
